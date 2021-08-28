@@ -1,6 +1,7 @@
 class Stack {
-  store = [];
-  //   count = 0;
+  constructor() {
+    this.store = [];
+  }
 
   push(value) {
     return this.store.push(value);

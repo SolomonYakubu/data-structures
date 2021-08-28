@@ -38,7 +38,7 @@ class LinkedList {
   delete(value) {
     let currentNode = this.head;
     if (currentNode.data == value) {
-      this.head == currentNode.next;
+      this.head = currentNode.next;
     } else {
       let previousNode = currentNode;
       while (currentNode.data !== value) {
@@ -61,6 +61,6 @@ linkedList.insert(2);
 linkedList.insert(0);
 
 linkedList.remove(0);
-linkedList.remove(2);
+linkedList.delete(2);
 console.log(JSON.stringify(linkedList.head, undefined, 2));
 console.log(linkedList.getHead());
