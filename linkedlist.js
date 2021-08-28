@@ -35,6 +35,23 @@ class LinkedList {
       }
     }
   }
+  delete(value) {
+    let currentNode = this.head;
+    if (currentNode.data == value) {
+      this.head == currentNode.next;
+    } else {
+      let previousNode = currentNode;
+      while (currentNode.data !== value) {
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+      }
+      previousNode.next = currentNode.next;
+    }
+    this.size--;
+  }
+  getHead() {
+    return this.head.data;
+  }
 }
 
 let linkedList = new LinkedList();
@@ -42,5 +59,8 @@ linkedList.insert(9);
 linkedList.insert(8);
 linkedList.insert(2);
 linkedList.insert(0);
+
 linkedList.remove(0);
-console.log(linkedList.head);
+linkedList.remove(2);
+console.log(JSON.stringify(linkedList.head, undefined, 2));
+console.log(linkedList.getHead());
