@@ -8,17 +8,17 @@ class Node {
 class LinkedList {
 	constructor() {
 		this.head = null;
-		this.size = 0;
+		this.count = 0;
 	}
 	insert(data) {
 		if (this.head == null) {
-			this.size++;
+			this.count++;
 			return (this.head = new Node(data));
 		}
 		let temp = this.head;
 		this.head = new Node(data);
 		this.head.next = temp;
-		this.size++;
+		this.count++;
 	}
 	insertAt(index, value) {
 		let currentNode = this.head;
@@ -39,7 +39,7 @@ class LinkedList {
 			newNode.next = currentNode;
 			previousNode.next = newNode;
 		}
-		this.size++;
+		this.count++;
 	}
 	remove(value) {
 		let currentNode = this.head;
@@ -53,17 +53,17 @@ class LinkedList {
 			}
 			previousNode.next = currentNode.next;
 		}
-		this.size--;
+		this.count--;
 	}
 	getHead() {
 		return this.head.data;
 	}
 	length() {
-		return this.size;
+		return this.count;
 	}
-	removeIndex(index) {
+	removeAt(index) {
 		let currentNode = this.head;
-		if (index >= this.size) {
+		if (index >= this.count) {
 			return;
 		}
 		if (index == 0) {
@@ -77,7 +77,7 @@ class LinkedList {
 			i++;
 		}
 		this.remove(currentNode.data);
-		this.size--;
+		this.count--;
 	}
 	toString() {
 		// let str = `${this.head.data}`;
@@ -103,6 +103,24 @@ class LinkedList {
 
 		this.head = previousNode;
 	}
+	indexOf(value) {
+		let index = 0;
+		if (value == this.head.data) {
+			return index;
+		}
+		let currentNode = this.head;
+		// let previousNode = currentNode
+		while (currentNode) {
+			if (currentNode.data == value) {
+				return index;
+			}
+			currentNode = currentNode.next;
+			index++;
+		}
+	}
+	isEmpty() {
+		return this.count === 0;
+	}
 }
 
 let linkedList = new LinkedList();
@@ -110,15 +128,16 @@ linkedList.insert(9);
 linkedList.insert(8);
 linkedList.insert(2);
 linkedList.insert(0);
-linkedList.insertAt(4, 10);
+linkedList.insertAt(4, 10); //index,value
 // linkedList.remove(0);
 // linkedList.delete(2);
-// linkedList.removeIndex(0);
+// linkedList.removeAt(4);
 // linkedList.reverse();
 // console.log(JSON.stringify(linkedList.head, undefined, 2));
 console.log(JSON.stringify(linkedList.head, undefined, 2));
 console.log(linkedList.getHead());
 console.log(linkedList.length());
 console.log(linkedList.toString());
+console.log(linkedList.isEmpty());
 
 exports.LinkedList = LinkedList;
