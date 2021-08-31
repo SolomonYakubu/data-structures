@@ -14,12 +14,12 @@ class MySet {
 		checkDuplicateAndMakeSet(this.store, value);
 	}
 	add(value) {
-		if (this.store.includes(value)) {
+		if (this.store.includes(value) || value == null) {
 			return;
 		}
 		this.store.push(value);
 	}
-	remove(value) {
+	delete(value) {
 		for (let i = 0; i < this.store.length; i++) {
 			if (this.store[i] == value) {
 				this.store.splice(i, 1);
@@ -46,18 +46,40 @@ class MySet {
 	intercept(set) {
 		let interceptSet = new MySet();
 		for (let i = 0; i < this.store.length; i++) {
-			if (set.store.includes(this.store[i])) {
+			if (set.has(this.store[i])) {
 				interceptSet.add(this.store[i]);
 			}
 		}
 		return interceptSet;
 	}
+	difference(set) {
+		let differenceSet = new MySet();
+		for (let i = 0; i < this.store.length; i++) {
+			if (!set.has(this.store[i])) {
+				differenceSet.add(this.store[i]);
+			}
+		}
+		return differenceSet;
+	}
+	isSubsetOf(set) {
+		if (this.store.length > set.size()) {
+			return false;
+		}
+		for (let i = 0; i < this.store.length; i++) {
+			if (!set.has(this.store[i])) {
+				return false;
+			}
+		}
+
+		return true;
+	}
 }
 let arr = [1, 1, 2, 2, 3, 3, 4, 1, 5, 6];
 const set = new MySet(...arr);
-const newSet = new MySet(12, 23, 45, 1, 2, 3);
+const newSet = new MySet(12, 23, 45, 1, 2, 3, 4, 5, 6);
 set.add(9);
-// set.remove(3);
-console.log(set.intercept(newSet).store);
+// set.delete(3);
+newSet.add(9);
+console.log(set.isSubsetOf(newSet));
 console.log(set.value());
 console.log(set.has(3));
