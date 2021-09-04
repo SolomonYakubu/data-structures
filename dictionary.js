@@ -25,11 +25,38 @@ class Dictionary {
 		return this.store.map((item) => item.key == key)[0];
 	}
 	get(key) {
-		const value = this.store.filter((item) => item.key == key);
-		return value[0].value;
+		try {
+			const value = this.store.filter((item) => item.key == key);
+			return value[0].value;
+		} catch (error) {
+			return error.message;
+		}
 	}
 	clear() {
 		this.store = [];
+	}
+	size() {
+		return this.store.length;
+	}
+	isEmpty() {
+		return this.store.length === 0;
+	}
+	keys() {
+		try {
+			return this.store.map((item) => item.key);
+		} catch (error) {
+			return error.message;
+		}
+	}
+	values() {
+		try {
+			return this.store.map((item) => item.value);
+		} catch (error) {
+			return error.message;
+		}
+	}
+	keyValues() {
+		return this.store;
 	}
 }
 
@@ -37,6 +64,9 @@ let dictionary = new Dictionary();
 
 dictionary.set("name", "angel");
 dictionary.set("age", "23");
-dictionary.remove("age");
+// dictionary.remove("age");
+// dictionary.remove("name");
 console.log(dictionary.get("name"));
-console.log(dictionary.store.map((item) => item.value));
+console.log(dictionary.keys());
+console.log(dictionary.values());
+console.log(dictionary.keyValues());

@@ -1,23 +1,23 @@
 class Stack {
-  constructor() {
-    this.store = [];
-  }
+    constructor() {
+        this.store = [];
+    }
 
-  push(value) {
-    return this.store.push(value);
-  }
-  pop() {
-    return this.store.length == 0 ? null : this.store.pop();
-  }
-  peak() {
-    return this.store.lenght == 0 ? null : this.store[this.store.length - 1];
-  }
-  isEmpty() {
-    return this.store.length == 0 ? true : false;
-  }
-  empty() {
-    return (this.store = []);
-  }
+    push(value) {
+        return this.store.push(value);
+    }
+    pop() {
+        return this.store.length == 0 ? null : this.store.pop();
+    }
+    peak() {
+        return this.store.lenght == 0 ? null : this.store[this.store.length - 1];
+    }
+    isEmpty() {
+        return this.store.length == 0 ? true : false;
+    }
+    empty() {
+        return (this.store = []);
+    }
 }
 let myStack = new Stack();
 myStack.push(2);
